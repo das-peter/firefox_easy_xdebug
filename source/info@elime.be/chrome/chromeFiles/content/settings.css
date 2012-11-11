@@ -1,0 +1,14 @@
+.confline{
+	padding-left: 12px;
+	font-family:Verdana;
+	color:gray;
+}
+hbox.xdebughelper label{
+	padding-top: 4px;
+}
+groupbox.xdebughelper{
+	width: 500px;
+}
+groupbox.xdebughelper .text-link{
+	margin:0;
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://mozapps/skin/pref/pref.css" type="text/css"?>
+<?xml-stylesheet href="chrome://easyxdebug/content/settings.css" type="text/css"?>
+<dialog buttons="accept, cancel" title="Xdebug Helper Settings"
+	ondialogaccept="be.elime.easyxdebugOptions.save()" onload="be.elime.easyxdebugOptions.initialize()"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script type="application/x-javascript" src="chrome://easyxdebug/content/settings.js"/>
+
+<groupbox class="xdebughelper">
+<caption label="Information"/>
+<description>
+	Plugin works with several IDEs. Below you find the explanation for Netbeans PHP:
+</description>
+<description/>
+<description>
+	This plugin is usefull if you don't want your Netbeans IDE to open a new browser window when starting a debug session.
+</description>
+<description>
+	To set your environment up go to netbeans:
+</description>
+<description>
+	Right click your project &gt; properties &gt; Run configuration &gt; Advanced &gt; Do not open webbrowser.
+</description>
+<description>
+	Then right click the icon in the bottom right to start debugging your current page.
+</description>
+<description/>
+<description>
+	Addon provided by <label class="text-link" href="http://www.elime.be" value="eLime" />
+</description>
+<description/>
+<description>
+	Documentation about using <label class="text-link" href="http://xdebug.org" value="XDebug"/>
+	with PHP can be found <label class="text-link" href="http://www.xdebug.org/docs-debugger.php" value="here" />.
+</description>
+
+<description/>
+<description/>
+<description>
+	In short, you have to copy php_xdebug*.dll file into your php's extensions dir,
+	and add following lines into your php.ini:
+</description>
+<description/>
+<textbox id="easyxdebug_prefs_phpini" class="plain" multiline="true" rows="5" value="zend_extension_ts=php_xdebug.dll;xdebug.remote_enable=On;xdebug.remote_host=localhost;xdebug.remote_port=9000;xdebug.remote_handler=dbgp" />
+<description/>
+<description>Then restart your Apache server.</description>
+<description/>
+<description>Inspired by Xdebug helper from Denis Orlikhin</description>
+
+</groupbox>
+<groupbox>
+	<caption label="Settings"/>
+	<hbox class="xdebughelper"><label control="easyxdebug_prefs_idekey" value="Xdebug.idekey value:"/><textbox id="easyxdebug_prefs_idekey"/></hbox>
+</groupbox>
+</dialog>

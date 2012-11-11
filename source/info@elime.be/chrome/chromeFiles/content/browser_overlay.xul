@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<overlay id="content-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://easyxdebug/content/main.js" />
+	<statusbar id="status-bar">
+		<statusbarpanel class="statusbarpanel-iconic" id="easyxdebug_debug"
+			onclick="be.elime.easyxdebug.toggle();"
+			src="chrome://easyxdebug/content/images/bug_go.png"
+			tooltiptext="Start xdebug session" />
+		<statusbarpanel class="statusbarpanel-iconic" id="easyxdebug_profile"
+			onclick="be.elime.easyxdebug.toggleProfile();"
+			src="chrome://easyxdebug/content/images/stop_green.png"
+			tooltiptext="Start xdebug profiler!" />
+	</statusbar>
+</overlay>

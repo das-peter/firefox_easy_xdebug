@@ -1,0 +1,1 @@
+pref("extensions.easyxdebug.idekey", "netbeans-xdebug");
