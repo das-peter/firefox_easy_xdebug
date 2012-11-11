@@ -10,5 +10,9 @@
 			onclick="be.elime.easyxdebug.toggleProfile();"
 			src="chrome://easyxdebug/content/images/stop_green.png"
 			tooltiptext="Start xdebug profiler!" />
+		<statusbarpanel class="statusbarpanel-iconic" id="easyxdebug_trace"
+			onclick="be.elime.easyxdebug.toggleTrace();"
+			src="chrome://easyxdebug/content/images/plugin_go.png"
+			tooltiptext="Start xdebug trace!" />
 	</statusbar>
 </overlay>

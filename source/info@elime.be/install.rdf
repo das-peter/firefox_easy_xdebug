@@ -6,11 +6,11 @@
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="2.0"
                    em:maxVersion="4.0.*" />
-				   
+
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="info@elime.be"
                    em:name="easy Xdebug"
-                   em:version="1.5"
+                   em:version="1.6"
                    em:creator="Brecht Vanhaesebrouck"
                    em:description="A tool to make xdebugging with an IDE (tested with netbeans) more userfriendly."
                    em:iconURL="chrome://easyxdebug/content/images/start.png"
@@ -24,6 +24,6 @@
 			<em:maxVersion>2.1a1pre</em:maxVersion>
 		</Description>
 	</em:targetApplication>
-		
+
   </RDF:Description>
 </RDF:RDF>

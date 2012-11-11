@@ -4,28 +4,38 @@ if(!be.elime.easyxdebug) be.elime.easyxdebug={};
 
 be.elime.easyxdebug = {
 	state_idekey: 'netbeans-xdebug',
-		
+
 	start: function () {
 		var doc= window.content.document;
 		be.elime.easyxdebug.setCookie(doc,'XDEBUG_SESSION',be.elime.easyxdebug.state_idekey, 60);
 	},
-	
+
 	startProfile: function () {
 		var doc= window.content.document;
 		be.elime.easyxdebug.setCookie(doc,'XDEBUG_PROFILE',1, 60);
 	},
-	
-	stop: function (){	
+
+	startTrace: function () {
+		var doc= window.content.document;
+		be.elime.easyxdebug.setCookie(doc,'XDEBUG_TRACE',1, 60);
+	},
+
+	stop: function (){
 		var doc= window.content.document;
 		be.elime.easyxdebug.setCookie(doc,'XDEBUG_SESSION',null, -60);
 	},
-	
+
 	stopProfile: function () {
 		var doc= window.content.document;
 		be.elime.easyxdebug.setCookie(doc,'XDEBUG_PROFILE',null, -60);
 	},
-	
-	
+
+	stopTrace: function () {
+		var doc= window.content.document;
+		be.elime.easyxdebug.setCookie(doc,'XDEBUG_TRACE',null, -60);
+	},
+
+
 	toggle: function() {
 		var doc= window.content.document;
 		var isEnabled = (be.elime.easyxdebug.getCookie(doc,'XDEBUG_SESSION')==be.elime.easyxdebug.state_idekey);
@@ -47,13 +57,23 @@ be.elime.easyxdebug = {
 		}
 		be.elime.easyxdebug.refresh();
 	},
-	
+	toggleTrace: function() {
+		var doc= window.content.document;
+		var isEnabled = (be.elime.easyxdebug.getCookie(doc,'XDEBUG_TRACE')==1);
+		if (isEnabled) {
+			be.elime.easyxdebug.stopTrace();
+		} else {
+			be.elime.easyxdebug.startTrace();
+		}
+		be.elime.easyxdebug.refresh();
+	},
+
 	refresh: function() {
 		var doc=window.content.document;
 
 		var isEnabled = (be.elime.easyxdebug.getCookie(doc,'XDEBUG_SESSION')==be.elime.easyxdebug.state_idekey);
 		var icon = document.getElementById('easyxdebug_debug');
-		
+
 		if(isEnabled){
 			icon.src="chrome://easyxdebug/content/images/bug_delete.png";
 			icon.tooltiptext="Stop xdebug session";
@@ -61,10 +81,10 @@ be.elime.easyxdebug = {
 			icon.src="chrome://easyxdebug/content/images/bug_go.png";
 			icon.tooltiptext="Start xdebug session";
 		}
-		
+
 		var isProfilerEnabled = (be.elime.easyxdebug.getCookie(doc,'XDEBUG_PROFILE')==1);
 		var profilerIcon = document.getElementById('easyxdebug_profile');
-		
+
 		if (isProfilerEnabled) {
 			profilerIcon.src="chrome://easyxdebug/content/images/stop_red.png";
 			profilerIcon.tooltiptext="Stop xdebug profiler";
@@ -72,20 +92,31 @@ be.elime.easyxdebug = {
 			profilerIcon.src="chrome://easyxdebug/content/images/stop_green.png";
 			profilerIcon.tooltiptext="Start xdebug profiler";
 		}
+
+		var isTraceEnabled = (be.elime.easyxdebug.getCookie(doc,'XDEBUG_TRACE')==1);
+		var traceIcon = document.getElementById('easyxdebug_trace');
+
+		if (isTraceEnabled) {
+			traceIcon.src="chrome://easyxdebug/content/images/plugin_delete.png";
+			traceIcon.tooltiptext="Stop xdebug trace";
+		}else{
+			traceIcon.src="chrome://easyxdebug/content/images/plugin_go.png";
+			traceIcon.tooltiptext="Start xdebug trace";
+		}
 	},
-	
+
 	init: function (){
 		var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
 		be.elime.easyxdebug.state_idekey = prefManager.getCharPref("extensions.easyxdebug.idekey");
 		getBrowser().addEventListener("load",be.elime.easyxdebug.refresh, true);
 	},
-	
+
 	setCookie: function (doc, cookieName, cookieVal,minutes) {
 		var exp=new Date();
 		exp.setTime(exp.getTime()+(minutes*60*1000));
 		doc.cookie=cookieName+"="+cookieVal+"; expires="+exp.toGMTString()+"; path=/";
 	},
-	
+
 	getCookie: function (doc,name) {
 		var prefix = name + "="
 		var cookieStartIndex = doc.cookie.indexOf(prefix)
